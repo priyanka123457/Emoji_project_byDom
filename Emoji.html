@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <style>
+    body{
+        text-align: center;
+        margin-top: 50px;
+    }
+    #head1{
+        color: black;
+        box-shadow: 2px 2px 20px;
+    }
+    input{
+        padding: 10px;
+        font-size: 18px;
+        width: 80%;
+        max-width: 300px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 20px;
+    }
+    span{
+        font-size: 50px;
+        display: block;
+        margin-top: 10px;
+    }
+   </style>
+    <title>Emoji Mode Predictor</title>
+</head>
+<body>
+    
+    <h1 id="head1">How are you feeling?</h1>
+    
+    <input type="text" id="input1" placeholder="Describe your mood">
+    
+    <span id="emojiOutput">😊😊😉😊</span>
+
+    <script>
+        let moodEmoji = {
+            happy: "😃 I am happy",
+            sad: "😥 I am sad",
+            love: "❤❤❤❤💟💗 I am in love",
+            angry: "😣 I am angry",
+            tired: "😴 I am tired",
+            scared: "😨 I am scared",
+            DizzyFace: "😵 I have dizzyface",
+            RobotFace: "🔥 I have robotface",
+            thinking: "🤔 I am thinking",
+            cool: "😎 I am cool ",
+            bad: "😞 I am bad"
+        };
+
+        let inputget = document.querySelector('#input1');
+        let outget = document.querySelector('#emojiOutput');
+
+        inputget.addEventListener('input', (event) => {
+            let text = event.target.value.toLowerCase();  // Convert input text to lowercase
+            let emoji = "😀";  // Default emoji
+            let found = false;  // Flag to check if a match is found
+
+            for (let i in moodEmoji) {
+                // Check if input text contains the key (case-insensitive)
+                if (text.includes(i.toLowerCase())) {
+                    emoji = moodEmoji[i];  // Assign the corresponding emoji if match is found
+                    found = true;  // Set the flag to true if match is found
+                    break;  // Exit the loop once a match is found
+                }
+            }
+
+            // If no match is found, show 'Emoji not found'
+            if (!found) {
+                emoji = "Emoji not found";
+            }
+
+            // Display the emoji or message in the output element
+            outget.innerText = emoji;
+        });
+    </script>
+    
+</body>
+</html>
